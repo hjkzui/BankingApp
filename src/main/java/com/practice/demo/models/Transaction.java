@@ -1,8 +1,5 @@
 package com.practice.demo.models;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -12,8 +9,9 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
     private Account sender;
-    private Account receiver;
+    private String receiver;
     private BigDecimal amount;
     private Date date;
     private String message;
@@ -38,11 +36,11 @@ public class Transaction {
         this.sender = sender;
     }
 
-    public Account getReceiver() {
+    public String getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(Account receiver) {
+    public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
 

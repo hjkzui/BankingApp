@@ -3,6 +3,7 @@ package com.practice.demo.models;
 import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Entity
 public class User {
@@ -19,6 +20,8 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private Role role;
+    @OneToOne
+    private Account account;
 
     public User() {
     }

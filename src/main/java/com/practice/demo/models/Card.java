@@ -1,9 +1,6 @@
 package com.practice.demo.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -13,28 +10,31 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int cardNumber;
-    private int cvv;
+    private String cardNumber;
+    private String cvv;
     private String type;
+    @Temporal(TemporalType.DATE)
     private Date expiration;
-    private User owner;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Account account;
 
     public Card() {
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(int cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
 
@@ -54,13 +54,13 @@ public class Card {
         this.expiration = expiration;
     }
 
-    public User getOwner() {
-        return owner;
+    /*public User getUser() {
+        return user;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
+    public void setUser(User user) {
+        this.user = user;
+    }*/
 
     public Long getId() {
         return id;
